@@ -1,0 +1,90 @@
+{
+  "info": {
+    "_postman_id": "b4f1c2d3-0a1b-4c2d-9e8f-7a6b5c4d3e2f",
+    "name": "Lab 2 - SQLite CRUD",
+    "description": "Requests for the Lab 2 book store API. Start the server with `npm run dev` in lab-02 before running them.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. GET all books",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/books/"
+      }
+    },
+    {
+      "name": "2. GET one book",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/books/1/"
+      }
+    },
+    {
+      "name": "3. POST add book",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"The Pragmatic Programmer\",\n  \"author\": \"Andrew Hunt\",\n  \"price\": 500,\n  \"pages\": 352\n}"
+        },
+        "url": "{{baseUrl}}/books/"
+      }
+    },
+    {
+      "name": "4. PUT update book",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Atomic Habits (Updated)\",\n  \"author\": \"James Clear\",\n  \"price\": 475,\n  \"pages\": 330\n}"
+        },
+        "url": "{{baseUrl}}/books/1/"
+      }
+    },
+    {
+      "name": "5. DELETE book",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": "{{baseUrl}}/books/10/"
+      }
+    },
+    {
+      "name": "6. Error - unknown book id",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/books/999/"
+      }
+    },
+    {
+      "name": "7. Error - invalid book id",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/books/abc/"
+      }
+    }
+  ]
+}

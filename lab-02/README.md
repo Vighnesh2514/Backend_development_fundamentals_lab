@@ -44,6 +44,7 @@ lab-02/
 ├── seed.js                # Rebuilds books.db from init.sql
 ├── package.json
 ├── package-lock.json
+├── postman_collection.json # The 7 requests used for testing
 ├── server.js              # Express server with the CRUD routes
 ├── vercel.json            # Sends all requests to api/index.js
 └── README.md
@@ -144,7 +145,7 @@ await db.get("SELECT * FROM book WHERE id = ?;", [bookId]);
 
 ## Testing
 
-Each route was called against the running server and the response was compared with the SQLite CLI. The screenshots below show the raw HTTP response, including the status line, and the terminal screenshots of `sqlite3` show the table before and after the changes.
+Every route was tested in Postman against the locally running server, and the result was compared with the SQLite CLI. The collection is included as `postman_collection.json`: import it into Postman and it contains all seven requests, with the `baseUrl` variable set to `http://localhost:3000`. The screenshots below show each request in Postman with its status code and response body, and the SQLite CLI screenshots show the table before and after the changes.
 
 | Route | Status observed | Database effect |
 |---|---|---|
