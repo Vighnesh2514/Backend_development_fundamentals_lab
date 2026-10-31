@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+
+# Environment variables (never commit real values)
+.env
+.env.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS / editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+.vercel
+.env*
