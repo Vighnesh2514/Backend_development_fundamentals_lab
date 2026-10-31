@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+
+# Environment variables (never commit real values)
+.env
+.env.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS / editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# The database file IS committed for this lab (lab requires the .db file),
+# but SQLite side files are not needed.
+*.db-journal
+*.db-wal
+*.db-shm
+
+.vercel
+.env*

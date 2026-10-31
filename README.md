@@ -12,6 +12,7 @@ This repository holds one folder per lab for the course. Each folder is a self-c
 | Lab | Title | Topics | Folder |
 |---|---|---|---|
 | Lab 01 | Node.js and Express server | Node.js `http` module, Express routing, status codes, 404 handling | [`lab-01/`](./lab-01) |
+| Lab 02 | SQLite database and CRUD routes | SQLite, `sqlite`/`sqlite3`, parameterised queries, REST CRUD, status codes | [`lab-02/`](./lab-02) |
 
 ## Running any lab
 
