@@ -124,27 +124,6 @@ Any path that is not defined returns the 404 message.
 
 ![Unknown route](./screenshots/not-found.png)
 
-## Notes: problems faced and how I solved them
-
-**Port already in use (`EADDRINUSE`).** `server.js` and `server-http.js` both listen on port 3000, so starting the second one while the first is still running crashed with `EADDRINUSE`. I stopped the running server with `Ctrl + C` before starting the other file.
-
-**Hardcoded port broke the deployment.** The first version used `const PORT = 3000`. On a hosting platform the port is provided by the environment, so the server never became reachable. I changed it to `process.env.PORT || 3000`, which keeps 3000 locally and uses the platform's port when deployed.
-
-**Vercel needed the app exported.** A server that only calls `app.listen()` does not work as a serverless function. I moved the `listen` call behind `if (require.main === module)`, exported the app with `module.exports = app`, and added `api/index.js` plus `vercel.json` so every request is forwarded to the Express app. The same `server.js` still runs normally with `npm start`.
-
-**Screenshot filenames with spaces.** File names such as `Screenshot 2026-10-16 094720.png` broke the image links in Markdown. I renamed every file to a single lowercase word without spaces (`home.png`, `about.png`, `time.png`, `not-found.png`) and linked them with `![caption](./screenshots/file.png)`.
-
-## Viva preparation
-
-**1. What is the difference between `package.json` and `node_modules`?**
-`package.json` is a small text file that describes the project and lists its dependencies, scripts and metadata. `node_modules` is the folder where `npm install` downloads the actual code of those dependencies. `package.json` is committed to Git, `node_modules` is not.
-
-**2. What does `app.listen` do?**
-It tells the Express application to start an HTTP server and listen for incoming requests on the given port and host. The callback runs once the server is ready.
-
-**3. What do `request` and `response` represent?**
-`request` is the incoming HTTP request from the client: URL, method, headers, query string and body. `response` is the object used to send data back: status code, headers and the response body.
-
 ## Rules followed
 
 - `node_modules` is not committed; it is excluded by `.gitignore`.
