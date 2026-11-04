@@ -1,10 +1,10 @@
 # Lab 3: REST API, query parameters, validation, debugging
 
-**P. Vighnesh** Â· Registration number **252U1R7075** Â· Section **CSE FSD 2B 309**
+**P. Vighnesh** · Registration number **252U1R7075** · Section **CSE FSD 2B 309**
 
 **Live link:** https://bdf-lab-03-vighnesh.vercel.app/
 
-Course: Backend Development Fundamentals â€” Year II Term II â€” Aurora
+Course: Backend Development Fundamentals — Year II Term II — Aurora
 Faculty: Joel Prashanth D
 
 > The live server stores its database in `/tmp`, the only writable folder on Vercel. Creating, updating and deleting books works, but the data returns to the 10 starting rows when the server restarts.
@@ -26,31 +26,35 @@ Turn the Lab 2 CRUD routes into a clean REST API: nouns in the paths, HTTP metho
 
 ```text
 lab-03/
-â”œâ”€â”€ api/
-â”‚   â””â”€â”€ index.js            # Vercel entry point (imports the Express app)
-â”œâ”€â”€ screenshots/
-â”‚   â”œâ”€â”€ db-before.png
-â”‚   â”œâ”€â”€ get-all.png
-â”‚   â”œâ”€â”€ query-search.png
-â”‚   â”œâ”€â”€ query-filter-sort.png
-â”‚   â”œâ”€â”€ query-pagination.png
-â”‚   â”œâ”€â”€ get-one.png
-â”‚   â”œâ”€â”€ post.png
-â”‚   â”œâ”€â”€ put.png
-â”‚   â”œâ”€â”€ delete.png
-â”‚   â”œâ”€â”€ errors-400.png
-â”‚   â”œâ”€â”€ errors-404.png
-â”‚   â””â”€â”€ db-after.png
-â”œâ”€â”€ .gitignore
-â”œâ”€â”€ books.db                # SQLite database file (10 starting rows)
-â”œâ”€â”€ init.sql                # Table definition and the 10 rows
-â”œâ”€â”€ seed.js                 # Rebuilds books.db from init.sql
-â”œâ”€â”€ package.json
-â”œâ”€â”€ package-lock.json
-â”œâ”€â”€ postman_collection.json # 14 success and failure requests
-â”œâ”€â”€ server.js               # Express server with the API routes
-â”œâ”€â”€ vercel.json             # Sends all requests to api/index.js
-â””â”€â”€ README.md
+├── api/
+│   └── index.js                  # Vercel entry point (imports the Express app)
+├── screenshots/
+│   ├── bad-query-param.png
+│   ├── db-after.png
+│   ├── db-before.png
+│   ├── delete.png
+│   ├── errors-404.png
+│   ├── get-all.png
+│   ├── get-one.png
+│   ├── invalid-id.png
+│   ├── post-bad-price.png
+│   ├── post-missing-author.png
+│   ├── post.png
+│   ├── put.png
+│   ├── query-filter-sort.png
+│   ├── query-pagination.png
+│   ├── query-price-filter.png
+│   └── query-search.png
+├── .gitignore
+├── books.db                      # SQLite database file (10 starting rows)
+├── init.sql                      # Table definition and the 10 rows
+├── package.json
+├── package-lock.json
+├── postman_collection.json       # 14 success and failure requests
+├── seed.js                       # Rebuilds books.db from init.sql
+├── server.js                     # Express server with the API routes
+├── vercel.json                   # Sends all requests to api/index.js
+└── README.md
 ```
 
 ## How to run

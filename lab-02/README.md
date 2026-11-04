@@ -1,10 +1,10 @@
 # Lab 2: SQLite database and CRUD routes
 
-**P. Vighnesh** Â· Registration number **252U1R7075** Â· Section **CSE FSD 2B 309**
+**P. Vighnesh** · Registration number **252U1R7075** · Section **CSE FSD 2B 309**
 
 **Live link:** https://bdf-lab-02-vighnesh.vercel.app/
 
-Course: Backend Development Fundamentals â€” Year II Term II â€” Aurora
+Course: Backend Development Fundamentals — Year II Term II — Aurora
 Faculty: Joel Prashanth D
 
 > The live server stores its database in `/tmp`, which is the only writable folder on Vercel. Adding, updating or deleting a book through the live link works, but the data goes back to the 10 starting rows when the server restarts. The local version keeps its changes in `books.db`.
@@ -26,28 +26,28 @@ Connect an Express server to a SQLite database and expose create, read, update a
 
 ```text
 lab-02/
-â”œâ”€â”€ api/
-â”‚   â””â”€â”€ index.js           # Vercel entry point (imports the Express app)
-â”œâ”€â”€ screenshots/
-â”‚   â”œâ”€â”€ db-before.png
-â”‚   â”œâ”€â”€ get-all.png
-â”‚   â”œâ”€â”€ get-one.png
-â”‚   â”œâ”€â”€ post.png
-â”‚   â”œâ”€â”€ put.png
-â”‚   â”œâ”€â”€ delete.png
-â”‚   â”œâ”€â”€ error-400.png
-â”‚   â”œâ”€â”€ error-404.png
-â”‚   â””â”€â”€ db-after.png
-â”œâ”€â”€ .gitignore
-â”œâ”€â”€ books.db               # SQLite database file (10 starting rows)
-â”œâ”€â”€ init.sql               # Table definition and the 10 rows
-â”œâ”€â”€ seed.js                # Rebuilds books.db from init.sql
-â”œâ”€â”€ package.json
-â”œâ”€â”€ package-lock.json
-â”œâ”€â”€ postman_collection.json # The 7 requests used for testing
-â”œâ”€â”€ server.js              # Express server with the CRUD routes
-â”œâ”€â”€ vercel.json            # Sends all requests to api/index.js
-â””â”€â”€ README.md
+├── api/
+│   └── index.js           # Vercel entry point (imports the Express app)
+├── screenshots/
+│   ├── db-before.png
+│   ├── get-all.png
+│   ├── get-one.png
+│   ├── post.png
+│   ├── put.png
+│   ├── delete.png
+│   ├── error-400.png
+│   ├── error-404.png
+│   └── db-after.png
+├── .gitignore
+├── books.db               # SQLite database file (10 starting rows)
+├── init.sql               # Table definition and the 10 rows
+├── seed.js                # Rebuilds books.db from init.sql
+├── package.json
+├── package-lock.json
+├── postman_collection.json # The 7 requests used for testing
+├── server.js              # Express server with the CRUD routes
+├── vercel.json            # Sends all requests to api/index.js
+└── README.md
 ```
 
 ## How to run
@@ -165,43 +165,43 @@ The `book` table and its 10 starting rows, read with the SQLite CLI.
 
 ![Database before testing](./screenshots/db-before.png)
 
-### GET /books/ â€” all books
+### GET /books/ — all books
 
 Returns every row with status 200.
 
 ![GET all books](./screenshots/get-all.png)
 
-### GET /books/1/ â€” one book
+### GET /books/1/ — one book
 
 Returns the single book with id 1 and status 200.
 
 ![GET one book](./screenshots/get-one.png)
 
-### POST /books/ â€” add a book
+### POST /books/ — add a book
 
 Adds a book and returns status 201 with the new id.
 
 ![POST add a book](./screenshots/post.png)
 
-### PUT /books/1/ â€” update a book
+### PUT /books/1/ — update a book
 
 Updates the fields of book 1 and returns status 200.
 
 ![PUT update a book](./screenshots/put.png)
 
-### DELETE /books/10/ â€” delete a book
+### DELETE /books/10/ — delete a book
 
 Deletes book 10 and returns status 200.
 
 ![DELETE a book](./screenshots/delete.png)
 
-### Error case â€” unknown book id
+### Error case — unknown book id
 
 `GET /books/999/` returns 404 because no such row exists.
 
 ![Unknown book id](./screenshots/error-404.png)
 
-### Error case â€” invalid book id
+### Error case — invalid book id
 
 `GET /books/abc/` returns 400 because the id is not a positive whole number.
 
