@@ -1,10 +1,10 @@
 # Lab 3: REST API, query parameters, validation, debugging
 
-**P. Vighnesh** · Registration number **252U1R7075** · Section **CSE FSD 2B 309**
+**P. Vighnesh** Â· Registration number **252U1R7075** Â· Section **CSE FSD 2B 309**
 
 **Live link:** https://bdf-lab-03-vighnesh.vercel.app/
 
-Course: Backend Development Fundamentals — Year II Term II — Aurora
+Course: Backend Development Fundamentals â€” Year II Term II â€” Aurora
 Faculty: Joel Prashanth D
 
 > The live server stores its database in `/tmp`, the only writable folder on Vercel. Creating, updating and deleting books works, but the data returns to the 10 starting rows when the server restarts.
@@ -26,31 +26,31 @@ Turn the Lab 2 CRUD routes into a clean REST API: nouns in the paths, HTTP metho
 
 ```text
 lab-03/
-├── api/
-│   └── index.js            # Vercel entry point (imports the Express app)
-├── screenshots/
-│   ├── db-before.png
-│   ├── get-all.png
-│   ├── query-search.png
-│   ├── query-filter-sort.png
-│   ├── query-pagination.png
-│   ├── get-one.png
-│   ├── post.png
-│   ├── put.png
-│   ├── delete.png
-│   ├── errors-400.png
-│   ├── errors-404.png
-│   └── db-after.png
-├── .gitignore
-├── books.db                # SQLite database file (10 starting rows)
-├── init.sql                # Table definition and the 10 rows
-├── seed.js                 # Rebuilds books.db from init.sql
-├── package.json
-├── package-lock.json
-├── postman_collection.json # 14 success and failure requests
-├── server.js               # Express server with the API routes
-├── vercel.json             # Sends all requests to api/index.js
-└── README.md
+â”œâ”€â”€ api/
+â”‚   â””â”€â”€ index.js            # Vercel entry point (imports the Express app)
+â”œâ”€â”€ screenshots/
+â”‚   â”œâ”€â”€ db-before.png
+â”‚   â”œâ”€â”€ get-all.png
+â”‚   â”œâ”€â”€ query-search.png
+â”‚   â”œâ”€â”€ query-filter-sort.png
+â”‚   â”œâ”€â”€ query-pagination.png
+â”‚   â”œâ”€â”€ get-one.png
+â”‚   â”œâ”€â”€ post.png
+â”‚   â”œâ”€â”€ put.png
+â”‚   â”œâ”€â”€ delete.png
+â”‚   â”œâ”€â”€ errors-400.png
+â”‚   â”œâ”€â”€ errors-404.png
+â”‚   â””â”€â”€ db-after.png
+â”œâ”€â”€ .gitignore
+â”œâ”€â”€ books.db                # SQLite database file (10 starting rows)
+â”œâ”€â”€ init.sql                # Table definition and the 10 rows
+â”œâ”€â”€ seed.js                 # Rebuilds books.db from init.sql
+â”œâ”€â”€ package.json
+â”œâ”€â”€ package-lock.json
+â”œâ”€â”€ postman_collection.json # 14 success and failure requests
+â”œâ”€â”€ server.js               # Express server with the API routes
+â”œâ”€â”€ vercel.json             # Sends all requests to api/index.js
+â””â”€â”€ README.md
 ```
 
 ## How to run
@@ -179,6 +179,8 @@ All 14 cases are in `postman_collection.json`: import it into Postman and press 
 
 ## Screenshots
 
+Every request below was sent from Postman to the running server, using the requests in `postman_collection.json`.
+
 ### Database before testing
 
 Table structure and the 10 starting rows, read with the SQLite CLI.
@@ -191,17 +193,23 @@ Returns the first 10 books with status 200.
 
 ![GET all books](./screenshots/get-all.png)
 
-### Search — `?search_q=the`
+### Search — `?search_q=habit`
 
-Partial title match with `LIKE`.
+Partial title match with `LIKE`; only titles containing "habit" come back.
 
 ![Search by title](./screenshots/query-search.png)
 
-### Price filter and sort — `?min_price=300&max_price=400&order_by=price&order=DESC`
+### Price filter — `?min_price=300&max_price=400`
 
-Only books in the price range, most expensive first.
+Returns only books priced between 300 and 400.
 
-![Price filter and sort](./screenshots/query-filter-sort.png)
+![Price filter](./screenshots/query-price-filter.png)
+
+### Sort — `?order_by=price&order=DESC&limit=3`
+
+The three most expensive books, highest first.
+
+![Sort by price](./screenshots/query-filter-sort.png)
 
 ### Pagination — `?limit=2&offset=8`
 
@@ -217,13 +225,25 @@ Returns a single book with status 200.
 
 ### POST /books/ — create
 
-Returns 201 with the new book id.
+Request body and the 201 response with the new book id.
 
 ![POST add book](./screenshots/post.png)
 
+### POST /books/ — missing author
+
+Returns 400 with `author is required`.
+
+![POST missing author](./screenshots/post-missing-author.png)
+
+### POST /books/ — price is not a number
+
+A string in `price` is rejected with 400 and `price must be a number`.
+
+![POST bad price](./screenshots/post-bad-price.png)
+
 ### PUT /books/1/ — update
 
-Returns 200 after replacing the fields.
+Request body and the 200 response after replacing the fields.
 
 ![PUT update book](./screenshots/put.png)
 
@@ -233,17 +253,23 @@ Returns 200 after removing the row.
 
 ![DELETE book](./screenshots/delete.png)
 
-### Validation errors — 400
+### GET /books/abc/ — invalid id
 
-Invalid id, bad `limit` and bad `order` all return 400 with a JSON message.
+A non-numeric id returns 400, not 404.
 
-![Validation errors](./screenshots/errors-400.png)
+![Invalid id](./screenshots/invalid-id.png)
 
-### Not found — 404
+### GET /books/ — bad query parameter
 
-A missing book and an unknown route both return 404 with the same JSON shape.
+An `order_by` value that is not a column name returns 400.
 
-![Not found errors](./screenshots/errors-404.png)
+![Bad query parameter](./screenshots/bad-query-param.png)
+
+### GET /books/999/ — not found
+
+A missing book returns 404 with the same JSON shape.
+
+![Not found](./screenshots/errors-404.png)
 
 ### Database after testing
 
